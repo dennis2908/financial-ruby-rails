@@ -1,0 +1,50 @@
+<%= form_for :transaction, url: transactions_path do |f| %>
+<!-- Throughout this file, f is one of the arguments used -->
+
+<!-- @transaction when rendering this page originally will be blank
+However when coming here from create, @transaction is already
+initialized - AND it will have the .errors attribute -->
+<% if @transaction and @transaction.errors.any? %>
+  <div id="error_explanation">
+      <!-- Rails helper that takes number and string and then will auto
+      pluralizes it -->
+      <%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction
+      from being saved:
+    <ul>
+      <% @transaction.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p>
+  <!-- The symbol placed here will be the actual text displayed -->
+  <%= f.label :label %><br>
+  <%= f.text_field :label %>
+</p>
+
+<p>
+  <%= f.label :amount %><br>
+  <%= f.text_area :amount %>
+</p>
+
+<p>
+  <%= f.radio_button(:withdrawal, true) %>
+  <%= f.label(:withdrawal_true, "Withdrawal") %>
+  <%= f.radio_button(:withdrawal, false) %>
+  <%= f.label(:withdrawal_false, "Deposit") %>
+</p>
+
+<p>
+  <%= f.label :date %><br>
+  <%= f.date_field :date, :value => Date.today %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+<button class="btn btn-default">
+<%= link_to 'Back', transactions_path %>
+</button>

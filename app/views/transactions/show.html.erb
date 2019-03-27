@@ -1,0 +1,29 @@
+<p>
+  <strong>Label:</strong>
+  <%= @transaction.label %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= number_to_currency @transaction.amount %>
+</p>
+
+<p>
+  <strong>Withdrawal:</strong>
+  <%= @transaction.withdrawal %>
+
+<p>
+  <strong>Date:</strong>
+  <%= @transaction.date %>
+</p>
+
+<!-- <p>
+  <strong>User ID:</strong>
+  <%= @transaction.user_id %>
+</p> -->
+<button type="button" class="btn btn-default">
+<%= link_to 'Edit', edit_transaction_path(@transaction) %>
+</button>
+<button type="button" class="btn btn-default">
+<%= link_to 'Back', transactions_path %>
+</button>
